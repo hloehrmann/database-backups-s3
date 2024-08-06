@@ -110,7 +110,13 @@ async function processBackup () {
       fs.unlink(filepath, error => {
         if (error) return console.log(error);
 
-        console.log(`File deleted successfully: ${ filepath }`);
+        console.log(`Compressed file deleted successfully: ${ filepath }`);
+      });
+
+      fs.unlink(`${ filepath }.dump`, error => {
+        if (error) return console.log(error);
+
+        console.log(`Dump file deleted successfully: ${ filepath }.dump`);
       });
     } catch (error) {
       console.error(`An error occurred while processing the database ${ dbType } ${ dbName }, host: ${ dbHostname }): ${ error }`);
